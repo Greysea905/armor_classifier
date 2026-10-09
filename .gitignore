@@ -1,0 +1,18 @@
+# 数据(大文件,不提交)
+data/
+datasets/
+video/
+
+# 训练输出与模型权重
+runs/
+*.pt
+*.onnx
+
+# Python 缓存
+__pycache__/
+*.py[cod]
+*$py.class
+
+# 系统文件
+.DS_Store
+*.swp

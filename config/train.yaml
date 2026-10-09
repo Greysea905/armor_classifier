@@ -1,0 +1,18 @@
+model: yolo11n-cls.pt   # 分类预训练模型(数字识别简单任务,nano 够)
+
+# 基本项
+imgsz: 64               # 数字小图 20×28,缩到 64
+epochs: 50              # 分类收敛快,50 轮够
+patience: 15             # 验证集 15 轮无提升就早停(防过拟合)
+batch: 128              # 小图,batch 可大
+device: 0               # AutoDL GPU
+name: digit             # 输出到 runs/digit/
+save_period: 5          # 每 5 轮存一个检查点
+amp: False              # 关闭 AMP,跳过下载 yolo26n.pt 做 AMP 检查(避免 GitHub 503)
+
+# 数据增强(分类比检测轻;数字类尤其要小心翻转)
+fliplr: 0.0             # 禁止水平翻转(数字 2/5 翻转会变形,6↔9 混淆)
+flipud: 0.0             # 禁止上下翻转
+hsv_h: 0.0              # 灰度图无色调,增强无意义
+hsv_s: 0.0              # 灰度图无饱和度
+hsv_v: 0.1              # 保留亮度微调(光照鲁棒)
